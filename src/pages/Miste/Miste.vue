@@ -25,120 +25,18 @@
     <div>
     <div class="bscroll">
       <ul class="abc" >
-        <li class="on"><a href="" ><span>首页</span><i ></i></a></li>
-        <li><a href=""><span>狗狗主粮</span><i></i></a></li>
-        <li><a href=""><span>零食</span><i></i></a></li>
-        <li><a href=""><span>医疗保健</span><i></i></a></li>
-        <li><a href=""><span>玩具</span><i></i></a></li>
-        <li><a href=""><span>外出</span><i></i></a></li>
-        <li><a href=""><span>服饰城</span><i></i></a></li>
+        <li class="on" v-for="(menu,index) in index.menus" :key="index"><a href="" ><span>{{menu.menu_name}}</span><i ></i></a></li>
       </ul>
     </div>
   </div>
     </div>
     <div class="bodytop">
     <div class="abc">
-      <nav class="banner">
-      <div class="swiper-container">
-        <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="/static/images/12.jpg">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="/static/images/13.jpg">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="/static/images/14.jpg">
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="/static/images/15.jpg">
-          </a>
-        </div>
-        <div class="swiper-slide">
-            <a href="#">
-              <img src="/static/images/16.jpg">
-            </a>
-          </div>
-        <div class="swiper-slide">
-          <a href="#">
-            <img src="/static/images/17.jpg">
-          </a>
-        </div>
-         </div>
-      </div>
-        <div class="swiper-pagination">
-          <span class="swiper-pagination-bullet"></span>
-          <span class="swiper-pagination-bullet"></span>
-          <span class="swiper-pagination-bullet"></span>
-          <span class="swiper-pagination-bullet"></span>
-          <span class="swiper-pagination-bullet"></span>
-          <span class="swiper-pagination-bullet"></span>
-        </div>
-      </nav>
+     <Banner></Banner>
     </div>
     <div>
       <div class="columnnavdiv">
-        <div>
-          <ul class="hottype">
-            <li>
-              <a href="">
-                <img src="/static/images/1a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/2a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/3a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/4a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/5a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/6a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/7a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/8a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/9a.jpg" alt="">
-              </a>
-            </li>
-            <li>
-              <a href="">
-                <img src="/static/images/10a.jpg" alt="">
-              </a>
-            </li>
-          </ul>
-        </div>
+        <Navbar></Navbar>
       </div>
     </div>
     <div>
@@ -149,30 +47,82 @@
       </div>
     </div>
     </div>
+    <Gide></Gide>
+    <List></List>
+    <Split></Split>
+    <div class="flexBox2">
+      <div class="flex-le">
+        <img src="./images/333a.jpg" alt="">
+        <img src="./images/333b.jpg" alt="">
+      </div>
+      <div  class="flex-le">
+        <img src="./images/333c.jpg" alt="">
+        <img src="./images/333d.jpg" alt="">
+      </div>
+    </div>
+    <Split></Split>
+    <div class="custom_tite pt10">
+      <div class="leftimg titclass">
+        <div class="img-meta">
+          <img src="./images/2222.jpg" alt="">
+        </div>
+        <div class="more more2">
+          <img src="./images/23a.png" alt="">
+          <Split></Split>
+
+        </div>
+        <div class="hard">
+          <ShopMist></ShopMist>
+        </div>
+        <List></List>
+        <List></List>
+        <List></List>
+      </div>
+      <div class="footimg">
+        <img src="./images/7777.jpg" alt="">
+      </div>
+         <div>
+           <Foot></Foot>
+         </div>
+    </div>
   </div>
 </template>
 <script>
+  import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.min.css'
+  import Gide from '../../components/Gide/Gide.vue'
+  import List from '../../components/List/List.vue'
+  import Split from '../../components/Split/Split.vue'
+  import ShopMist from '../../components/ShopMIst/ShopMIst.vue'
+  import Foot from '../../components/Foot/Foot.vue'
+  import Banner from '../../components/Banner/Banner.vue'
+  import Navbar from '../../components/Navbar/Navbar.vue'
     export default {
       mounted() {
         new BScroll('.bscroll', {
           scrollX: true,
           click: true
         });
-        this.$nextTick(() => {
-          new Swiper('.swiper-container', {
-            loop: true,
-            autoplay: {
-              disableOnInteraction: false
-            },
-            pagination: { // 指定分页器容器
-              el: '.swiper-pagination',
-            }
-//            el:
-          })
-        })
+
+
+        this.$store.dispatch('reqindex')
+      },
+      watch(){
+
+      },
+      computed:{
+        ...mapState(['index'])
+      },
+      components:{
+        Gide,
+        List,
+        Split,
+        ShopMist,
+        Foot,
+        Banner,
+        Navbar
       }
     }
 </script>
@@ -181,7 +131,7 @@
     position fixed
     left 0
     top 0
-    z-index 10
+    z-index 100
     background white
   .bodytop
     margin-top 140px
@@ -261,62 +211,49 @@
     margin-bottom -2px
   .abc
     margin-top 6px
-  .banner  /*轮播*/
-    width 100%
-    height 100%
-    .swiper-container
-      width 100%
-      height 100%
-      .swiper-wrapper
-        width 100%
-        height 100%
-        .swiper-slide
-          width 100%
-          height 100%
-          >a
-            display block
-            width 100%
-            height 100%
-            >img
-              width 100%
-              height 100%
-  .swiper-pagination
-    position: absolute;
-    text-align: center;
-    -webkit-transition: .3s;
-    transition: .3s;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-    z-index: 10
-    top 270px
-    left 40%
-  .swiper-pagination-bullet
-    width: 10px;
-    height: 10px;
-    display: inline-block;
-    border-radius: 100%;
-    background: #000;
-    opacity: .2;
-  .hottype
-    width 100%
-    display flex
-    flex-flow wrap
-    & li
-      width 20%
-      height 90px
-    & li a img
-       width 100%
-       height 100%
+
+
   .banner_item
      width 100%
   .banner_item img
      width 100%
      height 120px
-  .surprise-tit
-     padding 10px
-     height: 500px
-  .titimg img
-     width 20%
+  .flexBox2
+    width 100%
+    height 200px
+    display flex
+  .flexBox2 div
+    height 100px
+    width 50%
+  .flexBox2 div img
+    width 100%
+    height 100%
+  .leftimg titclass
+    position relative
+  .img-meta
+    width 50%
+    height 73px
+    display inline-block
+    img
+      width 100%
+      height 100%
+
+  .more2
+    width 40%
+    height 73px
+    display inline-block
+    img
+      width 71%
+      height 72px
+      margin-left 92px
+  .hard
+    height 1250px
+  .footimg
+    width 100%
+    height 30px
+    img
+     width 100%
+     height 100%
 
 
 </style>

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import FootGiud from './components/FootGiud.vue'
+  import FootGiud from './components/FootGiud/FootGiud.vue'
 export default {
   components:{
     FootGiud

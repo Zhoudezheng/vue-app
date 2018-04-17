@@ -39,6 +39,7 @@
     justify-content space-around
     text-align center
     line-height 45px
+    background white
   .footernav_ul li
     width 25%
     float left
