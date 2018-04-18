@@ -40,9 +40,9 @@
       </div>
     </div>
     <div>
-      <div class="banner_item">
+      <div class="banner_item" v-if="cart.data" >
         <a href="">
-          <img src="/static/images/11.gif" alt="">
+          <img :src="cart.data[2438].value[0].image" alt="">
         </a>
       </div>
     </div>
@@ -74,9 +74,33 @@
         <div class="hard">
           <ShopMist></ShopMist>
         </div>
-        <List></List>
-        <List></List>
-        <List></List>
+        <div class="leftimg titclass" v-if="index.datas">
+          <div class="img-meta">
+            <img :src="index.datas[43].value.left.img.image" alt="">
+          </div>
+          <div class="more more2">
+            <img src="./images/23a.png" alt="">
+          </div>
+        </div>
+        <nav class="banner" v-if="cart">
+          <div class="swiper-container" v-if="index.datas" >
+            <div class="swiper-wrapper"   >
+              <div class="swiper-slide" v-for="(valu,index) in index.datas[44].value" :key="index">
+                <a href="#">
+                  <img :src="valu.image">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination">
+            <span class="swiper-pagination-bullet"></span>
+          </div>
+        </nav>
+        <div v-if="index.datas">
+          <List :title="index.datas[47]"></List>
+          <List :title="index.datas[50]"></List>
+        </div>
+
       </div>
       <div class="footimg">
         <img src="./images/7777.jpg" alt="">
@@ -106,14 +130,26 @@
           click: true
         });
 
-
         this.$store.dispatch('reqindex')
       },
-      watch(){
+      watch:{
+        index(){
+          this.$nextTick(() => {
+            new Swiper('.swiper-container', {
+              loop: true,
+              autoplay:{
+                disableOnInteraction: false,
+              },
 
+              pagination: { // 指定分页器容器
+                el: '.swiper-pagination',
+              }
+            })
+          })
+        }
       },
       computed:{
-        ...mapState(['index'])
+        ...mapState(['index','cart'])
       },
       components:{
         Gide,
@@ -127,6 +163,8 @@
     }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
+  .miste
+    width 375px
   .headtop
     position fixed
     left 0
@@ -243,11 +281,11 @@
     height 73px
     display inline-block
     img
-      width 71%
+      width 61%
       height 72px
       margin-left 92px
   .hard
-    height 1250px
+    height 2520px
   .footimg
     width 100%
     height 30px
@@ -256,4 +294,50 @@
      height 100%
 
 
+  .banner  /*轮播*/
+    width 100%
+    height 100%
+    .swiper-container
+      width 100%
+      height 100%
+      .swiper-wrapper
+        width 100%
+        height 100%
+        .swiper-slide
+          width 100%
+          height 100%
+          >a
+            display block
+            width 100%
+            height 100%
+            >img
+              width 100%
+              height 100%
+  .swiper-pagination
+    position: absolute;
+    text-align: center;
+    -webkit-transition: .3s;
+    transition: .3s;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    z-index: 10
+    top 270px
+    left 40%
+  .swiper-pagination-bullet
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 100%;
+    background: red;
+    opcity:0.5
+
+  .leftimg titclass
+    position relative
+  .img-meta
+    width 50%
+    height 73px
+    display inline-block
+    img
+      width 100%
+      height 100%
 </style>

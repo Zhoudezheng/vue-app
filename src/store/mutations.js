@@ -1,6 +1,7 @@
 import {RECEIVE_INDEX,
-        RECEIVE_CART
-
+        RECEIVE_CART,
+        RECEIVE_BRAND,
+        RECEIVE_CLASSIFY
 } from './mutation-type';
 
 export default {
@@ -9,5 +10,11 @@ export default {
    },
    [RECEIVE_CART](state,{cart}){
      state.cart=cart
+  },
+  [RECEIVE_BRAND](state,{brand}){
+     state.brand=brand
+  },
+  [RECEIVE_CLASSIFY](state,{classify}){
+    state.classify=classify
   }
 }

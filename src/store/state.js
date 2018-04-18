@@ -1,4 +1,6 @@
 export default {
   index:{},
-  cart:{}
+  cart:{},
+  brand:{},
+  classify:{}
 }

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="aa">
     <router-view></router-view>
-    <FootGiud></FootGiud>
+    <FootGiud ></FootGiud>
   </div>
 </template>
 
@@ -14,5 +14,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" rel="stylesheet/stylus">
+  .aa
+    width 375px
 </style>

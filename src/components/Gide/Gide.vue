@@ -1,19 +1,19 @@
 <template>
    <div>
-     <div class="surprise">
-       <div class="surprise-tit">
-         <div class="titimg">
-           <img src="https://static.epetbar.com/static_wap/appmall/main/new_index_icon_suprice.png?version=03" alt="">
+     <div class="surprise" >
+       <div class="surprise-tit" v-if="cart.data">
+         <div class="titimg" v-if="cart.data">
+           <img :src="cart.data[3].surprise_icon.image" alt="">
          </div>
-         <div class="nexttip">下一场开始</div>
+         <div class="nexttip">{{cart.data[3].title}}</div>
          <div class="time">
-           <span class="hour">11</span>
+           <span class="hour" >{{cart.data.sys_time | dateString('HH')}}</span>
            <span>:</span>
-           <span class="minute">00</span>
+           <span class="minute">{{cart.data.sys_time | dateString('mm')}}</span>
          </div>
-         <div class="more">
+         <div class="more"  v-if="cart.data">
            <a href="##">
-             <img src="https://img2.epetbar.com/nowater/2018-02/02/12/80acfffe2d91b341fd2c8de903b3eace.png" alt="">
+             <img :src="cart.data[3].right_image.image" alt="">
            </a>
          </div>
        </div>
@@ -90,6 +90,7 @@
    </div>
 </template>
 <script>
+  import {mapState} from 'vuex'
   import BScroll from 'better-scroll'
     export default {
       mounted(){
@@ -97,6 +98,9 @@
           scrollX: true,
           click: true
         })
+      },
+      computed:{
+        ...mapState(['cart'])
       }
 
     }

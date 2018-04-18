@@ -4,6 +4,14 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store'
+import './filters'
+import VueLazyLoad from 'vue-lazyload';
+import loading from './common/timer.gif'
+
+Vue.use(VueLazyLoad,{
+  loading
+})
+
 
 Vue.config.productionTip = false;
 
